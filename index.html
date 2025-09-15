@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriCore | Farm ERP Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f6f9f5;
+            color: #222;
+            max-width: 700px;
+            margin: 0px auto;
+        }
+        /* Navbar styles */
+        .navbar {
+            width: 92%;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .logo {
+            font-weight: bold;
+            color: #3a7d2c;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            padding: 18px 0;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar ul li {
+            display: inline;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: color 0.2s;
+            padding: 8px 0;
+        }
+        .navbar ul li a:hover {
+            color: #3a7d2c;
+        }
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                /* align-items: flex-start; */
+                padding: 0 12px;
+            }
+            .navbar ul {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+            .navbar .logo {
+                padding: 14px 0 6px 0;
+            }
+        }
+        .hero {
+            background: linear-gradient(120deg, #6dbb63 0%, #3a7d2c 100%);
+            color: #fff;
+            padding: 80px 20px 60px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+        }
+        .cta-btn {
+            background: #fff;
+            color: #3a7d2c;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+            margin: 1rem;
+        }
+        .cta-btn:hover {
+            background: #3a7d2c;
+            color: #fff;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin: 60px 0 40px 0;
+            padding: 0 20px;
+        }
+        .feature {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 32px 24px;
+            max-width: 320px;
+            flex: 1 1 260px;
+            text-align: center;
+        }
+        .feature h3 {
+            color: #3a7d2c;
+            margin-bottom: 12px;
+        }
+        .footer {
+            text-align: center;
+            color: #888;
+            font-size: 0.95rem;
+            padding: 30px 10px 20px 10px;
+        }
+        @media (max-width: 800px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar">
+        <div class="logo">AgriCore</div>
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#getstarted">Get Started</a></li>
+        </ul>
+    </nav>
+    <!-- Navbar End -->
+
+    <div class="hero" id="getstarted">
+        <h1>AgriCore</h1>
+        <p>The all-in-one ERP platform for modern farms. Streamline operations, boost productivity, and grow smarter with AgriCore.</p>
+        <button class="cta-btn" onclick="window.location='#getstarted'">Get Started</button>
+        <button class="cta-btn" onclick="window.location='#login'">Login</button>
+    </div>
+    <div class="features" id="features">
+        <div class="feature">
+            <h3>Crop & Field Management</h3>
+            <p>Track crop cycles, field activities, and optimize yields with real-time insights.</p>
+        </div>
+        <div class="feature">
+            <h3>Inventory & Resource Tracking</h3>
+            <p>Manage seeds, fertilizers, equipment, and resources efficiently from one dashboard.</p>
+        </div>
+        <div class="feature">
+            <h3>Labour Management</h3>
+            <p>Assign tasks, monitor attendance, and track performance of your farm workforce with ease.</p>
+        </div>
+        <div class="feature">
+            <h3>Weather & Alerts</h3>
+            <p>Get real-time weather updates and critical alerts to make informed decisions and protect your crops.</p>
+        </div>
+        <div class="feature">
+            <h3>Financial Analytics</h3>
+            <p>Monitor expenses, sales, and profitability with powerful analytics and reports.</p>
+        </div>
+        
+    </div>
+    <!-- Pricing Section Placeholder -->
+    <div id="pricing" style="text-align:center; margin:60px 0 40px 0;">
+        <h2 style="color:#3a7d2c;">Pricing</h2>
+        <p>Flexible plans for farms of all sizes. <br>Contact us for a custom quote!</p>
+    </div>
+    <!-- Login Section Placeholder -->
+    <div id="login" style="text-align:center; margin:60px 0 40px 0;">
+        <h2 style="color:#3a7d2c;">Login</h2>
+        <p>Access your AgriCore dashboard.<br>
+        <a href="#" style="color:#6dbb63; text-decoration:underline;">Go to Login Page</a></p>
+    </div>
+    <div class="footer">
+        &copy; 2025 AgriCore. Empowering Agriculture with Technology.
+    </div>
+</body>
+</html>
