@@ -1,4 +1,4 @@
-
+//custom API error 
 class ApiError extends Error{
 
     constructor(statusCode, message="Something went wrong", success, stack, errors=[]){

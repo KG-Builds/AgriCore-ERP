@@ -1,1 +1,0 @@
-# AgriCore-ERP
