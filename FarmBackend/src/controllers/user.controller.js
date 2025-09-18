@@ -1,7 +1,9 @@
 import asyncHandler from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
-import{ User } from "../models/User.model.js"
+import{ User} from "../models/User.model.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
+import { options } from "../constants.js"
+import jwt from "jsonwebtoken";
 
 //this function generate necessary token for authentication
 //updates the user database with the new refresh token value
@@ -145,8 +147,101 @@ const loginUser = asyncHandler(async(req, res)=>{
     .json(new ApiResponse("User log in successfull", 200, updatedUser)) //sending the custom Api response
 })
 
+const logOutUser = asyncHandler(async(req, res)=>{
+    const user = req?.user;
+
+    //logout user -> delete the refresh token from the user collection
+
+    //find the user from the user id provided from the user inject to res object
+    //returns the update user
+    const updatedUser = User.findByIdAndUpdate(req?.user._id,
+        {
+            $set:{
+                refreshToken:undefined
+            }
+        },
+        {
+            new:true
+        }
+    )
+
+    return res.status(200)
+    .clearCookie("accessToken", options) //clear cookies for successfull log out
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse("User logged out successfully", 200, user))
+
+})
+
+
+//updates the old user password
+const updateUserPassword = asyncHandler(async(req, res)=>{
+
+    //fetch both old and new Password
+    const {newPassword, oldPassword} = req.body;
+
+    //throw error if any of then are empty
+    if (!newPassword || !oldPassword) {
+        throw new ApiError(403, "All fields are necessary", false)
+    }
+
+    //fetch the user using the user id
+    const user = await User.findById(req?.user._id);
+
+    //compare if the password old password is correct
+    const validPassword = user.comparePassword(oldPassword);
+
+    if (!validPassword) {
+        throw new ApiError(400, "Password is incorrect", false)
+    }
+
+    //update the password field with new passoword
+    user.password = password
+    //saves the changes made
+    user.save({validateBeforeSave:false}, user);
+
+    //return the response
+    return res.status(200)
+    .json(new ApiResponse("Password Changed successfully", 200))
+
+})
+
+const reGenerateTokens = asyncHandler(async(req, res)=>{
+    //refresh token verification
+    //not valid then routes -> login page
+    //otherwise generate new tokens
+
+    //refresh token from cookies
+    const token = req.cookies.refreshToken;
+
+    if (!refreshToken) {
+        throw new ApiError(401, "Unauthorized access", false);
+        //route -> login page
+    }
+
+    //refresh token verification
+    const decodedToken = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET , (Error)=>{throw new ApiError(403, Error.message, false)})
+
+    const user = User.findById(decodedToken?._id);
+
+    if (!user) {
+        throw new ApiError(409, "Invalid token", false);
+    }
+
+    //generate new tokens
+    const {refreshToken, accessToken} = generateAccessNrefreshToken(user._id);
+
+    return res.status(200)
+    .cookie("refreshToken", refreshToken, options) //set new tokens to cookies
+    .cookie("accessToken", accessToken, options)
+    .json(new ApiResponse("Access Token generated successfully", 200))
+
+
+})
 
 export {
     registerUser,
-    loginUser
+    loginUser,
+    logOutUser,
+    updateUserPassword,
+    reGenerateTokens
 }

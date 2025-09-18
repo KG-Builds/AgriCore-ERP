@@ -10,6 +10,7 @@ const asyncHandler = (func) => async(req,res,next) => {
             success: false,
             message:error.message,
         })
+        console.log("hey there")
     }
 }
 

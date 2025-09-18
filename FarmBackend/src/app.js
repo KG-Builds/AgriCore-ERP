@@ -1,5 +1,5 @@
-import express from "express";
-import { loginUser, registerUser } from "./controllers/registerController.js";
+import express, { json } from "express";
+import { loginUser, registerUser } from "./controllers/user.controller.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
@@ -28,7 +28,7 @@ app.use(cookieParser());
 
 //routes
 //route import
-import {userRouter } from "./routes/user.routes.js";
+import {router as userRouter } from "./routes/user.routes.js";
 
 //user routes
 //all user related request will be routed from here only
